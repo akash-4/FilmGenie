@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "332435707381",
+    "firebase_url": "https://filmgenie-c89c6.firebaseio.com",
+    "project_id": "filmgenie-c89c6",
+    "storage_bucket": "filmgenie-c89c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:332435707381:android:c451a46af10782d17d3cbc",
+        "android_client_info": {
+          "package_name": "com.example.filmgenie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "332435707381-n5j82bolrqpd3dj0hbnqm61dgif40vge.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.filmgenie",
+            "certificate_hash": "3bb1bd42703ea302843370f95cf6a22aeb430435"
+          }
+        },
+        {
+          "client_id": "332435707381-2abva9p731ubk5rile21qt4kqbe2gcqj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAj9KX-D6YrGl5T82fSgRxTJ_SFg9o-AsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "332435707381-2abva9p731ubk5rile21qt4kqbe2gcqj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
