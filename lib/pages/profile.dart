@@ -78,26 +78,30 @@ class _ProfileState extends State<Profile> {
                         key: _formKey,
                         child: Stack(
                           children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.only(left: 30.0),
-                              child: Center(
-                                  child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Opacity(
-                                        opacity: 0.35,
-                                        child: Image.asset(
-                                          'assets/images/profile.png',
-                                          fit: BoxFit.fill,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              1,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              1.2,
-                                        ),
-                                      ))),
+                            FadeAnimation(
+                              2,
+                              Padding(
+                                padding: const EdgeInsets.only(left: 30.0),
+                                child: Center(
+                                    child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Opacity(
+                                          opacity: 0.35,
+                                          child: Image.asset(
+                                            'assets/images/profile.png',
+                                            fit: BoxFit.fill,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                1,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                1.2,
+                                          ),
+                                        ))),
+                              ),
                             ),
                             Container(
                               child: FutureBuilder(
@@ -451,7 +455,7 @@ class _ProfileState extends State<Profile> {
                                                   CrossAxisAlignment.start,
                                               children: <Widget>[
                                                 SizedBox(
-                                                  width: 35,
+                                                  width: 0,
                                                 ),
                                                 InkWell(
                                                   onTap: () {
@@ -533,14 +537,6 @@ class _ProfileState extends State<Profile> {
                                                 padding: EdgeInsets.only(
                                                     top: 15, bottom: 0),
                                                 child: Center(
-                                                    child: Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                    horizontal:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.075,
-                                                  ),
                                                   child: RaisedButton(
                                                       elevation: 0,
                                                       color: AppTheme.black2
@@ -641,7 +637,7 @@ class _ProfileState extends State<Profile> {
                                                                       .black1,
                                                             ));
                                                       }),
-                                                )))),
+                                                ))),
                                       ],
                                     );
                                   }),

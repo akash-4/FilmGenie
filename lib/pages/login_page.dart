@@ -1,3 +1,5 @@
+import 'package:flutter/services.dart';
+
 import '../Animations/FadeAnimation.dart';
 import './signup_email_page.dart';
 import 'package:flutter/material.dart';
@@ -328,11 +330,28 @@ class _LoginState extends State<LoginState> {
                                         dynamic result = await _auth
                                             .signInWithEmailAndPassword(
                                                 email, password);
-                                        if (result == null) {
-                                          setState(() {
-                                            error = 'Incorrect Credentials';
-                                            isloading = false;
-                                          });
+
+                                        if (result is PlatformException) {
+                                          if (result.code ==
+                                              'ERROR_INVALID_EMAIL') {
+                                            setState(() {
+                                              error = 'Invalid Email';
+                                              isloading = false;
+                                            });
+                                          } else if (result.code ==
+                                              'ERROR_WRONG_PASSWORD') {
+                                            setState(() {
+                                              error = 'Incorrect Password';
+                                              isloading = false;
+                                            });
+                                          } else if (result.code ==
+                                              'ERROR_USER_NOT_FOUND') {
+                                            setState(() {
+                                              error =
+                                                  'User does not exist! Please sign up.';
+                                              isloading = false;
+                                            });
+                                          }
                                         } else {
                                           Navigator.pop(context, true);
                                         }

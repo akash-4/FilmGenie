@@ -1,3 +1,5 @@
+import 'package:flutter/services.dart';
+
 import '../Animations/FadeAnimation.dart';
 import '../constants/color.dart';
 import './login_page.dart';
@@ -24,10 +26,8 @@ class _SignUpEmailState extends State<SignUpEmail> {
 
   @override
   Widget build(BuildContext context) {
-    final devHeight =
-        MediaQuery.of(context).size.height; 
-    final devWidth =
-        MediaQuery.of(context).size.width;
+    final devHeight = MediaQuery.of(context).size.height;
+    final devWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         backgroundColor: AppTheme.black1,
         resizeToAvoidBottomPadding: false,
@@ -289,11 +289,53 @@ class _SignUpEmailState extends State<SignUpEmail> {
                                         setState(() {
                                           isloading = true;
                                         });
-                                        await _auth
+                                        dynamic result = await _auth
                                             .registerWithEmailAndPassword(
                                                 email, password, name);
-                                        Navigator.pop(context, true);
+                                        if (result is PlatformException) {
+                                          if (result.code ==
+                                              'ERROR_EMAIL_ALREADY_IN_USE') {
+                                            setState(() {
+                                              error = 'Account already exists';
+                                              isloading = false;
+                                            });
+                                          } else if (result.code ==
+                                              'ERROR_WEAK_PASSWORD') {
+                                            setState(() {
+                                              error = 'Weak Password';
+                                              isloading = false;
+                                            });
+                                          } else if (result.code ==
+                                              'ERROR_INVALID_EMAIL') {
+                                            setState(() {
+                                              error = 'Invalid Email';
+                                              isloading = false;
+                                            });
+                                          }
+                                        } else {
+                                          Navigator.pop(context, true);
+                                        }
                                       }
+                                      if (error != '') {
+                                        AlertDialog alertDialog = AlertDialog(
+                                          backgroundColor: AppTheme.black1,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                new BorderRadius.circular(10.0),
+                                          ),
+                                          title: Text(error,
+                                              style: TextStyle(
+                                                color: Colors.red,
+                                              )),
+                                          content: Text("Please try Again!!",
+                                              style: TextStyle(
+                                                  color: AppTheme.black2)),
+                                        );
+                                        showDialog(
+                                            context: context,
+                                            builder: (_) => alertDialog);
+                                      }
+                                      // Navigator.pop(context, true);
                                     }),
                               ))),
                         ),
